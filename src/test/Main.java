@@ -22,7 +22,7 @@ public class Main {
 
 		//lista hardcoded para ganar //TODO: eliminar este set, es solo para pruebas
 		frutas = List.of(frutilla);
-		//
+		////
 		
 
 		//Definicion de casillas y cantidad que tendra la maquina
