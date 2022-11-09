@@ -6,6 +6,7 @@ import negocio.Casilla;
 import negocio.Fruta;
 import negocio.Maquina;
 import negocio.Premio;
+import negocio.Ticket;
 
 public class Main {
 
@@ -62,24 +63,44 @@ public class Main {
 		premio2.setNombre("doble manzana + uva");
 		premio2.setPremio(300f);
 
-		final float RECAUDACION_INICIAL = 1000f;
 		final float PRECIO_JUGADA = 10f;
 		
 		Maquina maquina1 = new Maquina();
 		maquina1.setCasillas(casillas);
 		maquina1.addPremio(premio1);
 		maquina1.addPremio(premio2);
+		
+
+		final float RECAUDACION_INICIAL = maquina1.getPremioMaximo();
+		
 		maquina1.setPrecioJugada(PRECIO_JUGADA);
 		maquina1.setRecaudacion(RECAUDACION_INICIAL);
 		
 		//TODO: eliminar este hardcodeo de credito y hacerlo con el ticket como indicar el enunciado
 		maquina1.setCredito(200f);
+		//
+
+		Ticket ticket1 = new Ticket();
+		ticket1.setMonto(100.5f);
+		ticket1.setNumeroTicket(1);
+		ticket1.setUtilizado(false);
+		
+		Ticket ticket2 = new Ticket();
+		ticket2.setMonto(100.5f);
+		ticket2.setNumeroTicket(7);
+		ticket2.setUtilizado(false);
+
+		maquina1.ingresarCredito(ticket1.getNumeroTicket());
+		maquina1.ingresarCredito(ticket2.getNumeroTicket());
+		
+		//
+		
 		
 		if (!maquina1.hasRecaudacionMinima()) {
 			System.out.print("Se ha alcanzado la recaudación mínima y existe posibilidad de no poder pagar los próximos premios");
 		}
 		
-		if (maquina1.hasCredito()) {
+		if (maquina1.hasCreditoParaJugar()) {
 			maquina1.jugar();
 		} else {
 			System.out.print("La maquina no tiene credito para realizar la jugada");
