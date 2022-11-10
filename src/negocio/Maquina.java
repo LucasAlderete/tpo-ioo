@@ -113,6 +113,11 @@ public class Maquina {
 	public void addPremio(Premio premio) {
 		this.premios.add(premio);
 	}
+	public void addPremios(List<Premio> premios) {
+		for (Premio premio : premios) {
+			this.premios.add(premio);
+		}
+	}
 
 	public void limpiarPremios() {
 		this.premios.clear();
